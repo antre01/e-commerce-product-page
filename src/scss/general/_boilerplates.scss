@@ -12,13 +12,13 @@
 body {
   min-height: 100vh;
   max-width: 100vw;
-  background: var(--light-grayish-blue);
+  background: var(--white);
   padding-inline: 9rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
-  @include v.breakpoint('xlarge') {
+  @include v.breakpoint("xlarge") {
     padding-inline: 3rem;
   }
 
