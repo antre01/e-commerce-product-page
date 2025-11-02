@@ -205,11 +205,11 @@
       background: var(--white);
       border-radius: 0.5rem;
       box-shadow: 0px 11px 35px -4px hsla(0, 0%, 0%, 0.2);
-      transform: translateY(-140%);
+      transform: translateY(-160%);
       z-index: 9;
       transition: all 0.4s ease-in-out;
 
-      @include v.breakpoint('xlarge') {
+      @include v.breakpoint("xlarge") {
         right: 0.1rem;
       }
 
