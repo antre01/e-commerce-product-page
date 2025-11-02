@@ -1,0 +1,94 @@
+@mixin thumbnail-carousel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.65rem;
+
+  .thumbnail-wrapper {
+    position: relative;
+    height: 5.5rem;
+    width: 5.5rem;
+    cursor: pointer;
+    border: 0.125rem solid transparent;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 0.625rem;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: hsla(0, 0%, 100%, 0.65);
+      border-radius: 0.625rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+  .active {
+    border-color: var(--orange);
+
+    &::before {
+      opacity: 1;
+      background: hsla(0, 0%, 100%, 0.8);
+    }
+  }
+}
+
+@mixin carousel-btns(
+  $display-mode: flex,
+  $h-offset-right: -32px,
+  $h-offset-left: -32px
+) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: $h-offset-right;
+  left: $h-offset-left;
+  display: $display-mode;
+  align-items: center;
+  justify-content: space-between;
+
+  .next-icon,
+  .previous-icon {
+    height: 4rem;
+    width: 4rem;
+    background: var(--light-grayish-blue);
+    border-radius: 100%;
+
+    svg {
+      scale: 1.1;
+
+      path {
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
+  .next-icon:hover svg path,
+  .previous-icon:hover svg path {
+    stroke: var(--orange);
+  }
+}
+
+@mixin cart-container {
+  
+}

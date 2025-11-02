@@ -1,0 +1,63 @@
+@use "../variables/" as v;
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
+
+h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--very-dark-blue);
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--very-dark-blue);
+
+  .discount {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--black);
+    padding: 0.375rem 0.525rem;
+    border-radius: 0.375rem;
+  }
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-grayish-blue);
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--very-dark-blue);
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--dark-grayish-blue);
+
+  @include v.breakpoint(small) {
+    font-size: 0.9375rem;
+  }
+}
+
+li {
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--dark-grayish-blue);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}

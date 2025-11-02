@@ -1,0 +1,302 @@
+@use "../variables/" as v;
+
+.navbar {
+  max-width: 75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.625rem;
+  border-bottom: 0.05rem solid var(--grayish-blue);
+
+  @include v.breakpoint(large) {
+    width: 90vw;
+  }
+
+  @include v.breakpoint(small) {
+    width: 100vw;
+    padding: 0.25rem 1rem;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    @include v.breakpoint(small) {
+      gap: 1rem;
+    }
+
+    .menu-icon {
+      display: none;
+      padding-top: 0.25rem;
+
+      @include v.breakpoint(medium) {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      cursor: pointer;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 11;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+
+      @include v.breakpoint(medium) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 15.625rem;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: var(--white);
+        padding: 2rem;
+        z-index: 12;
+        transform: translateX(-100%);
+        transition: all 0.4s ease-in-out;
+      }
+
+      &.open {
+        @include v.breakpoint(medium) {
+          transform: translateX(0);
+        }
+      }
+
+      .close-icon {
+        display: none;
+
+        @include v.breakpoint(medium) {
+          display: block;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .nav-link-el {
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        @include v.breakpoint(medium) {
+          font-weight: 700;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -44.5px;
+          left: 0;
+          width: 0;
+          height: 4px;
+          background: var(--orange);
+          transition: all 0.3s ease-in-out;
+        }
+
+        &:hover {
+          color: var(--very-dark-blue);
+
+          &::after {
+            width: 100%;
+
+            @include v.breakpoint(medium) {
+              width: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__right {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2.5rem;
+
+    @include v.breakpoint(small) {
+      justify-content: flex-end;
+      gap: 0.25rem;
+    }
+
+    .cart-overlay {
+      display: none;
+      @include v.breakpoint(small) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: transparent;
+        z-index: 5;
+      }
+    }
+
+    .cart {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .cart-icon,
+      .cart-icon path {
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .cart-icon:hover path {
+        fill: var(--very-dark-blue);
+      }
+
+      .quantity-icon {
+        position: absolute;
+        top: -7px;
+        right: -8px;
+        min-width: 20.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.625rem;
+        font-weight: 500;
+        background: var(--orange);
+        color: var(--white);
+        padding: 0.05rem 0.45rem;
+        border-radius: 55px;
+        cursor: pointer;
+      }
+    }
+
+    .avatar {
+      height: 3.5rem;
+      cursor: pointer;
+      border: 0.125rem solid transparent;
+      border-radius: 100%;
+      transition: all 0.3s ease-in-out;
+
+      @include v.breakpoint(small) {
+        scale: 0.5;
+      }
+    }
+
+    .avatar:hover {
+      border: 0.125rem solid var(--orange);
+    }
+
+    .cart-container {
+      position: absolute;
+      top: 65px;
+      right: -65px;
+      width: 360.34px;
+      background: var(--white);
+      border-radius: 0.5rem;
+      box-shadow: 0px 11px 35px -4px hsla(0, 0%, 0%, 0.2);
+      transform: translateY(-140%);
+      z-index: 9;
+      transition: all 0.4s ease-in-out;
+
+      @include v.breakpoint('xlarge') {
+        right: 0.1rem;
+      }
+
+      @include v.breakpoint(small) {
+        position: fixed;
+        left: 50%;
+        top: 72px;
+        transform: translateX(-50%) translateY(-140%);
+        width: calc(100vw - 1.125rem);
+        max-width: 360px;
+        z-index: 10;
+        transition: all 0.4s ease-in-out;
+      }
+
+      &.visible {
+        transform: translateY(0);
+        @include v.breakpoint(small) {
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      h4 {
+        padding: 1.425rem;
+      }
+
+      hr {
+        border: 0.01rem solid var(--grayish-blue);
+        opacity: 0.6;
+      }
+
+      .cart-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.375rem;
+        padding: 1.425rem 1.425rem 1.75rem 1.425rem;
+
+        .summary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.25rem;
+
+          .thumbnail {
+            height: 48px;
+            border-radius: 0.25rem;
+          }
+
+          article {
+            p {
+              span {
+                font-weight: 700;
+                color: var(--very-dark-blue);
+              }
+            }
+          }
+
+          .delete-icon {
+            cursor: pointer;
+          }
+        }
+
+        .checkout-btn {
+          width: 100%;
+          font-size: 1rem;
+          font-weight: 700;
+          background: var(--orange);
+          color: var(--very-dark-blue);
+          border-radius: 0.5rem;
+          padding-block: 1rem;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .checkout-btn:hover {
+          background: hsla(26, 100%, 55%, 0.6);
+        }
+      }
+      .empty-cart-wrapper {
+        width: 100%;
+        height: 179px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

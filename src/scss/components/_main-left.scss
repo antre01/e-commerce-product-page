@@ -1,0 +1,64 @@
+@use "../variables/" as v;
+
+.main-left {
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .image-wrapper {
+    position: relative;
+
+    .displayed-img {
+      height: 27rem;
+      border-radius: 1rem;
+      cursor: pointer;
+
+      @include v.breakpoint(small) {
+        border-radius: 0;
+        min-width: 375px;
+        width: 100vw;
+        height: 36vh;
+        object-fit: cover;
+      }
+    }
+
+    .carousel-btns {
+      display: none;
+      right: -32px;
+      left: -32px;
+
+      @include v.carousel-btns(
+        $display-mode: none,
+        $h-offset-right: -32px,
+        $h-offset-left: -32px
+      );
+
+      @include v.breakpoint(small) {
+        @include v.carousel-btns(
+          $display-mode: flex,
+          $h-offset-right: 20px,
+          $h-offset-left: 20px
+        );
+
+        .next-icon,
+        .previous-icon {
+          height: 3rem;
+          width: 3rem;
+
+          svg {
+            scale: 0.925;
+          }
+        }
+      }
+    }
+  }
+
+  .thumbnail-carousel {
+    @include v.thumbnail-carousel;
+
+    @include v.breakpoint(small) {
+      display: none;
+    }
+  }
+}
